@@ -15,8 +15,8 @@ class SsoServiceProvider extends ServiceProvider
 
         // Registration of the configuration filess
         $this->publishes([
-            __DIR__ . '/config/sso-wemx.php' => config_path('sso-wemx.php'),
-        ], 'sso-wemx');
+            __DIR__ . '/config/sso-clientxcms.php' => config_path('sso-clientxcms.php'),
+        ], 'sso-clientxcms');
 
         // Registration of routes
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');

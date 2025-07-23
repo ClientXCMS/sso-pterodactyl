@@ -1,6 +1,6 @@
 <?php
 
-namespace WemX\Sso\Http\Controllers;
+namespace ClientXCMS\Sso\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class SsoController
      *
      * @return Redirect
      */
-    public function handle($token)
+    public function handle(Request $request, string $token)
     {
         if(!$this->hasToken($token)) {
             return redirect()->back()->withError('Token does not exists or has expired');
@@ -25,7 +25,9 @@ class SsoController
         try {
             Auth::loginUsingId($this->getToken($token));
             $this->invalidateToken($token);
-
+            if ($request->has('redirect')) {
+                return redirect($request->input('redirect'));
+            }
             return redirect()->intended('/');
         } catch(\Exception $error) {
             return redirect()->back()->withError('Something went wrong, please try again.');
@@ -39,11 +41,11 @@ class SsoController
      */
     public function webhook(Request $request)
     {
-        if(!config('sso-wemx.secret')) {
+        if(!config('sso-clientxcms.secret')) {
             return response(['success' => false, 'message' => 'Please configure a SSO Secret'], 403);
         }
 
-        if($request->input('sso_secret') !== config('sso-wemx.secret')) {
+        if($request->input('sso_secret') !== config('sso-clientxcms.secret')) {
             return response(['success' => false, 'message' => 'Please provide valid credentials'], 403);
         }
 
@@ -67,8 +69,8 @@ class SsoController
      */
     protected function generateToken($user_id)
     {
-        $token = Str::random(config('sso-wemx.token.length', 48));
-        Cache::add($token, $user_id, config('sso-wemx.token.lifetime', 60));
+        $token = Str::random(config('sso-clientxcms.token.length', 48));
+        Cache::add($token, $user_id, config('sso-clientxcms.token.lifetime', 60));
         return $token;
     }
 

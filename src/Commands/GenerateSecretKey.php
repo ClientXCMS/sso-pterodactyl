@@ -1,19 +1,18 @@
 <?php
 
-namespace WemX\Sso\Commands;
+namespace ClientXCMS\Sso\Commands;
 
+use ClientXCMS\Sso\EnvEditor;
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\Kernel;
 use Pterodactyl\Traits\Commands\EnvironmentWriterTrait;
 use Illuminate\Support\Str;
 
 class GenerateSecretKey extends Command
 {
-    use EnvironmentWriterTrait;
 
-    protected $description = 'Generate new SSO secret key for WemX';
+    protected $description = 'Generate new SSO secret key for ClientXCMS';
 
-    protected $signature = 'wemx:generate';
+    protected $signature = 'clientxcms:generate';
 
     /**
      * GenerateSecretKey constructor.
@@ -31,8 +30,7 @@ class GenerateSecretKey extends Command
     public function handle(): int
     {
         $secret_key = $this->generate();
-        $this->writeToEnvironment(['WEMX_SSO_SECRET' => $secret_key]);
-
+        EnvEditor::putEnv(['CLIENTXCMS_SSO_SECRET' => $secret_key]);
         $this->info("Generated new secret key: $secret_key");
         return 0;
     }
