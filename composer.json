@@ -1,12 +1,12 @@
 {
-    "name": "wemx/sso-pterodactyl",
-    "description": "Allows clients from WemX login to their Pterodactyl account with a single redirect",
+    "name": "clientxcms/sso-pterodactyl",
+    "description": "Allows clients from ClientXCMS login to their Pterodactyl account with a single redirect",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mubeen Ullah",
-            "email": "mubeen@wemx.net"
+            "name": "Martin Delebecque",
+            "email": "contact@clientxcms.com"
         }
     ],
     "minimum-stability": "stable",
@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "WemX\\Sso\\": "src/"
+            "ClientXCMS\\Sso\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "WemX\\Sso\\SsoServiceProvider"
+                "ClientXCMS\\Sso\\SsoServiceProvider"
             ]
         }
     }
