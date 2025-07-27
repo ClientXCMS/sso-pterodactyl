@@ -4,7 +4,6 @@ namespace ClientXCMS\Sso\Commands;
 
 use ClientXCMS\Sso\EnvEditor;
 use Illuminate\Console\Command;
-use Pterodactyl\Traits\Commands\EnvironmentWriterTrait;
 use Illuminate\Support\Str;
 
 class GenerateSecretKey extends Command

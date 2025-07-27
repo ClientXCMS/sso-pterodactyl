@@ -1,9 +1,9 @@
 <?php
 
-namespace WemX\Sso;
+namespace ClientXCMS\Sso;
 
 use Illuminate\Support\ServiceProvider;
-use WemX\Sso\Commands\GenerateSecretKey;
+use ClientXCMS\Sso\Commands\GenerateSecretKey;
 
 class SsoServiceProvider extends ServiceProvider
 {
@@ -26,8 +26,8 @@ class SsoServiceProvider extends ServiceProvider
     {
         // Download configuration file
         $this->mergeConfigFrom(
-            __DIR__ . '/config/sso-wemx.php',
-            'sso-wemx'
+            __DIR__ . '/config/sso-clientxcms.php',
+            'sso-clientxcms'
         );
     }
 }
