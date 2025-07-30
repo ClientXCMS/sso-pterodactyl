@@ -20,6 +20,7 @@ class SsoServiceProvider extends ServiceProvider
 
         // Registration of routes
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api-application.php');
     }
 
     public function register()

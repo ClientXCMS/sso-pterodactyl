@@ -29,14 +29,19 @@ This command will publish the config/sso-clientxcms.php file, where you can set 
 ```shell
 php artisan clientxcms:generate
 ```
-3. Add the SSO key to your `.env` file in your clientxcms application by adding the following line:
+
+3. Clear the configuration cache to ensure the new settings are applied:
+```bash
+php artisan route:clear
+```
+4. Add the SSO key to your `.env` file in your clientxcms application by adding the following line:
 ```env
 SSO_CLIENTXCMS_KEY{SERVER_ID}=your_secret_key_here
 ```
 with `{SERVER_ID}` being the ID of the server you want to connect to. For example, if your server ID is `1`, you would add:
 ```env
 SSO_CLIENTXCMS_KEY1=your_secret_key_here
-``` 
+```
 If you are using Cloud platforms you can add metadata to your CLIENTXCMS server to set the SSO key:
 Key: `sso_key`
 Value: `your_secret_key_here`
